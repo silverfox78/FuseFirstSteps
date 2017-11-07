@@ -113,3 +113,36 @@ Tambien necesitamos algunas cosas mas especificas como:
     pip3 install numpy
     sudo apt-get install build-essential libssl-dev libffi-dev python-dev
     sudo apt-get install -y python3-venv
+
+# Karaf - Fuse
+
+    ## Configuracion de KARAF
+    sudo gedit /home/[USUARIO]/Karaf/etc/system.properties
+    
+    Modificamos la linea del nombre de la instancia
+    karaf.name = vida
+
+    sudo gedit /home/[USUARIO]/Karaf/etc/users.properties
+    
+    Descomentamos la linea del administrador
+    admin=admin,admin,manager,viewer,Monitor, Operator, Maintainer, Deployer, Auditor, Administrator, SuperUser
+
+---
+
+    ## Lanzador de KARAF
+
+    **Lanzador de la APP**
+    sudo gedit /usr/share/applications/karaf.desktop
+
+
+    **Texto para el Lanzador**
+    [Desktop Entry]
+    Name=Karaf
+    Comment=Consola de Karaf-Fuse
+    Exec=/home/vida/Karaf/bin/karaf
+    Icon=/home/vida/Karaf/bin/karaf.png
+    Terminal=true
+    Type=Application
+
+---
+
