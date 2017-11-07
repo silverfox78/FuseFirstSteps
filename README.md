@@ -129,27 +129,27 @@ Tambien necesitamos algunas cosas mas especificas como:
 
 ---
 
-    ## Lanzador de KARAF
+## Lanzador de KARAF
 
-    **Lanzador de la APP**
-    sudo gedit /usr/share/applications/karaf.desktop
+**Lanzador de la APP**
+sudo gedit /usr/share/applications/karaf.desktop
 
 
-    **Texto para el Lanzador**
-    
-    Observacion: El icono lo deben bajar ustedes...
+**Texto para el Lanzador**
 
-    ´´´
-    
-    [Desktop Entry]
-    Name=Karaf
-    Comment=Consola de Karaf-Fuse
-    Exec=/home/[USUARIO]/Karaf/bin/karaf
-    Icon=/home/[USUARIO]/Karaf/bin/karaf.png
-    Terminal=true
-    Type=Application
+Observacion: El icono lo deben bajar ustedes...
 
-    ´´´
+´´´
+
+[Desktop Entry]
+Name=Karaf
+Comment=Consola de Karaf-Fuse
+Exec=/home/[USUARIO]/Karaf/bin/karaf
+Icon=/home/[USUARIO]/Karaf/bin/karaf.png
+Terminal=true
+Type=Application
+
+´´´
 
 ---
 
