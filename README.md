@@ -139,7 +139,7 @@ sudo gedit /usr/share/applications/karaf.desktop
 
 Observacion: El icono lo deben bajar ustedes...
 
-´´´
+```mod
 
 [Desktop Entry]
 Name=Karaf
@@ -149,7 +149,7 @@ Icon=/home/[USUARIO]/Karaf/bin/karaf.png
 Terminal=true
 Type=Application
 
-´´´
+```
 
 ---
 
