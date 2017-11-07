@@ -136,13 +136,20 @@ Tambien necesitamos algunas cosas mas especificas como:
 
 
     **Texto para el Lanzador**
+    
+    Observacion: El icono lo deben bajar ustedes...
+
+    ´´´
+    
     [Desktop Entry]
     Name=Karaf
     Comment=Consola de Karaf-Fuse
-    Exec=/home/vida/Karaf/bin/karaf
-    Icon=/home/vida/Karaf/bin/karaf.png
+    Exec=/home/[USUARIO]/Karaf/bin/karaf
+    Icon=/home/[USUARIO]/Karaf/bin/karaf.png
     Terminal=true
     Type=Application
+
+    ´´´
 
 ---
 
