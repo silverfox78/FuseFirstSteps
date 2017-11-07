@@ -79,11 +79,16 @@ Tambien necesitamos algunas cosas mas especificas como:
     ./SoapUi.X.X.X.sh
 
 # GIT
+
+```{r, engine='sh', count_lines}
     sudo apt-get update
     sudo apt-get install git
     sudo apt-get update
+```
 
 # Node
+
+```{r, engine='sh', count_lines}
     sudo apt-get install nodejs
     sudo apt-get install npm
     curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
@@ -102,8 +107,11 @@ Tambien necesitamos algunas cosas mas especificas como:
     npm install express
     npm install -g express
     npm link express
+```
 
 # Python
+
+```{r, engine='sh', count_lines}
     sudo apt-get update
     sudo apt-get -y upgrade
     python3 -V
@@ -113,33 +121,42 @@ Tambien necesitamos algunas cosas mas especificas como:
     pip3 install numpy
     sudo apt-get install build-essential libssl-dev libffi-dev python-dev
     sudo apt-get install -y python3-venv
+```
+
 
 # Karaf - Fuse
 
-    ## Configuracion de KARAF
-    sudo gedit /home/[USUARIO]/Karaf/etc/system.properties
-    
-    Modificamos la linea del nombre de la instancia
-    karaf.name = vida
+## Configuracion de KARAF
 
+```{r, engine='sh', count_lines}
+    sudo gedit /home/[USUARIO]/Karaf/etc/system.properties
+```
+
+Modificamos la linea del nombre de la instancia
+karaf.name = vida
+
+```{r, engine='sh', count_lines}
     sudo gedit /home/[USUARIO]/Karaf/etc/users.properties
-    
-    Descomentamos la linea del administrador
-    admin=admin,admin,manager,viewer,Monitor, Operator, Maintainer, Deployer, Auditor, Administrator, SuperUser
+```
+
+Descomentamos la linea del administrador
+admin=admin,admin,manager,viewer,Monitor, Operator, Maintainer, Deployer, Auditor, Administrator, SuperUser
 
 ---
 
 ## Lanzador de KARAF
 
 **Lanzador de la APP**
-sudo gedit /usr/share/applications/karaf.desktop
 
+```{r, engine='sh', count_lines}
+sudo gedit /usr/share/applications/karaf.desktop
+```
 
 **Texto para el Lanzador**
 
 Observacion: El icono lo deben bajar ustedes...
 
-```mod
+```{r, engine='sh', count_lines}
 
 [Desktop Entry]
 Name=Karaf
