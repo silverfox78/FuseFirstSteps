@@ -178,7 +178,7 @@ admin=admin,admin,manager,viewer,Monitor, Operator, Maintainer, Deployer, Audito
 **Lanzador de la APP**
 
 ```{r, engine='sh', count_lines}
-sudo gedit /usr/share/applications/karaf.desktop
+    sudo gedit /usr/share/applications/karaf.desktop
 ```
 
 **Texto para el Lanzador**
@@ -186,13 +186,13 @@ sudo gedit /usr/share/applications/karaf.desktop
 Observacion: El icono lo deben bajar ustedes...
 
 ```{r, engine='sh', count_lines}
-[Desktop Entry]
-Name=Karaf
-Comment=Consola de Karaf-Fuse
-Exec=/home/[USUARIO]/Karaf/bin/karaf
-Icon=/home/[USUARIO]/Karaf/bin/karaf.png
-Terminal=true
-Type=Application
+    [Desktop Entry]
+    Name=Karaf
+    Comment=Consola de Karaf-Fuse
+    Exec=/home/[USUARIO]/Karaf/bin/karaf
+    Icon=/home/[USUARIO]/Karaf/bin/karaf.png
+    Terminal=true
+    Type=Application
 ```
 
 ---
