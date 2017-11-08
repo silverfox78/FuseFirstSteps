@@ -123,6 +123,35 @@ Tambien necesitamos algunas cosas mas especificas como:
     sudo apt-get install -y python3-venv
 ```
 
+# Eclipse - Oxigen
+
+Descargamos Eclipse: http://www.eclipse.org/
+Lo descomprimimos e instalamos.
+
+```{r, engine='sh', count_lines}
+
+    /home/[USUARIO]/eclipse/java-oxygen2
+
+```
+
+Luego para comodidad, generamos un lanzador
+
+```{r, engine='sh', count_lines}
+
+    sudo gedit /usr/share/applications/eclipse.desktop
+
+    [Desktop Entry]
+    Name=Eclipse
+    Type=Application
+    Exec=/home/vida/eclipse/java-oxygen2/eclipse/eclipse
+    Terminal=false
+    Icon=/home/vida/eclipse/java-oxygen2/eclipse/icon.xpm
+    Comment=Integrated Development Environment
+    NoDisplay=false
+    Categories=Development;IDE;
+    Name[en]=Eclipse
+
+```
 
 # Karaf - Fuse
 
@@ -133,7 +162,7 @@ Tambien necesitamos algunas cosas mas especificas como:
 ```
 
 Modificamos la linea del nombre de la instancia
-karaf.name = vida
+karaf.name = [NOMBRE_INSTANCIA_FABRIC]
 
 ```{r, engine='sh', count_lines}
     sudo gedit /home/[USUARIO]/Karaf/etc/users.properties
@@ -170,3 +199,61 @@ Type=Application
 
 ---
 
+## Configuracion de Fabric
+
+Iniciamo con la configuracion de los datos de la instancia de Fabric, usaremos el usuario **[admin]**
+
+```{r, engine='sh', count_lines}
+
+    fabric:create --new-user [USUARIO] --new-user-password [CONTRASEÑA_USUARIO] --new-user-role Administrator --resolver localhostname --zookeeper-password [CONTRASEÑA_ZOOKEEPER] --wait-for-provisioning --force --clean
+
+```
+
+Proseguimos con la generacion del contenedor, el cual sera nuestro **Contenedor**.
+
+```{r, engine='sh', count_lines}
+
+    fabric:container-create-child [NOMBRE_INSTANCIA_FABRIC] [NOMBRE_CONTENEDOR]
+
+```
+
+Lo que prosigue, es la creacion de un perfil, para nuestros fines, pensamos en lo siguiente:
+
+Asignaremos como padre: **feature-camel**.
+
+Y le agregaremos los siguientes features:
+* camel-core
+* camel-cxf
+* camel-spring
+* camel-blueprint
+* camel-restlet
+* camel-jackson
+* camel-jacksonxml
+* camel-jaxb
+* camel-jetty
+* fabric-camel
+* spring
+
+Para la creacion usaremos el comando:
+
+´´´{r, engine='sh', count_lines}
+
+    fabric:profile-create --parents feature-camel [NOMBRE_PERFIL]
+
+´´´
+
+Para la agregar los **features** usaremos el comando:
+
+´´´{r, engine='sh', count_lines}
+
+    fabric:profile-edit --features camel-core --features camel-cxf --features camel-spring --features camel-blueprint --features camel-restlet --features camel-jackson --features camel-jacksonxml --features camel-jaxb --features camel-jetty --features fabric-camel --features spring [NOMBRE_PERFIL]
+
+´´´
+
+Lo siguiente, es crear asociar a nuestro **Contenedor** el perfil creado...
+
+´´´
+
+    fabric:container-add-profile [NOMBRE_CONTENEDOR] [NOMBRE_PERFIL]
+
+´´´
