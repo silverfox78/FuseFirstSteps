@@ -186,7 +186,6 @@ sudo gedit /usr/share/applications/karaf.desktop
 Observacion: El icono lo deben bajar ustedes...
 
 ```{r, engine='sh', count_lines}
-
 [Desktop Entry]
 Name=Karaf
 Comment=Consola de Karaf-Fuse
@@ -194,7 +193,6 @@ Exec=/home/[USUARIO]/Karaf/bin/karaf
 Icon=/home/[USUARIO]/Karaf/bin/karaf.png
 Terminal=true
 Type=Application
-
 ```
 
 ---
@@ -204,26 +202,20 @@ Type=Application
 Iniciamo con la configuracion de los datos de la instancia de Fabric, usaremos el usuario **[admin]**
 
 ```{r, engine='sh', count_lines}
-
     fabric:create --new-user [USUARIO] --new-user-password [CONTRASEÑA_USUARIO] --new-user-role Administrator --resolver localhostname --zookeeper-password [CONTRASEÑA_ZOOKEEPER] --wait-for-provisioning --force --clean
-
 ```
 
 Proseguimos con la generacion del contenedor, el cual sera nuestro **Contenedor**.
 
 ```{r, engine='sh', count_lines}
-
     fabric:container-create-child [NOMBRE_INSTANCIA_FABRIC] [NOMBRE_CONTENEDOR]
-
 ```
 
 **OBSERVACION:** En caso de problemas en el nombre del equipo, usar el siguiente comando:
 
 
 ´´´
-
     fabric:container-resolver-set --container <NOMBRE_NODO/CONTENEDOR> localip
-
 ´´´
 
 Lo que prosigue, es la creacion de un perfil, para nuestros fines, pensamos en lo siguiente:
@@ -246,25 +238,19 @@ Y le agregaremos los siguientes features:
 Para la creacion usaremos el comando:
 
 ´´´{r, engine='sh', count_lines}
-
     fabric:profile-create --parents feature-camel [NOMBRE_PERFIL]
-
 ´´´
 
 Para la agregar los **features** usaremos el comando:
 
 ´´´{r, engine='sh', count_lines}
-
     fabric:profile-edit --features camel-core --features camel-cxf --features camel-spring --features camel-blueprint --features camel-restlet --features camel-jackson --features camel-jacksonxml --features camel-jaxb --features camel-jetty --features fabric-camel --features spring [NOMBRE_PERFIL]
-
 ´´´
 
 Lo siguiente, es crear asociar a nuestro **Contenedor** el perfil creado...
 
 ´´´
-
     fabric:container-add-profile [NOMBRE_CONTENEDOR] [NOMBRE_PERFIL]
-
 ´´´
 
 
