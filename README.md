@@ -214,9 +214,9 @@ Proseguimos con la generacion del contenedor, el cual sera nuestro **Contenedor*
 **OBSERVACION:** En caso de problemas en el nombre del equipo, usar el siguiente comando:
 
 
-´´´
+```{r, engine='sh', count_lines}
     fabric:container-resolver-set --container <NOMBRE_NODO/CONTENEDOR> localip
-´´´
+```
 
 Lo que prosigue, es la creacion de un perfil, para nuestros fines, pensamos en lo siguiente:
 
@@ -237,20 +237,20 @@ Y le agregaremos los siguientes features:
 
 Para la creacion usaremos el comando:
 
-´´´{r, engine='sh', count_lines}
+```{r, engine='sh', count_lines}
     fabric:profile-create --parents feature-camel [NOMBRE_PERFIL]
-´´´
+```
 
 Para la agregar los **features** usaremos el comando:
 
-´´´{r, engine='sh', count_lines}
+```{r, engine='sh', count_lines}
     fabric:profile-edit --features camel-core --features camel-cxf --features camel-spring --features camel-blueprint --features camel-restlet --features camel-jackson --features camel-jacksonxml --features camel-jaxb --features camel-jetty --features fabric-camel --features spring [NOMBRE_PERFIL]
-´´´
+```
 
 Lo siguiente, es crear asociar a nuestro **Contenedor** el perfil creado...
 
-´´´
+```
     fabric:container-add-profile [NOMBRE_CONTENEDOR] [NOMBRE_PERFIL]
-´´´
+```
 
 
