@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="     http://www.springframework.org/schema/beans                http://www.springframework.org/schema/beans/spring-beans.xsd                     http://camel.apache.org/schema/cxf                      http://camel.apache.org/schema/cxf/camel-cxf.xsd                     http://cxf.apache.org/jaxrs                      http://cxf.apache.org/schemas/jaxrs.xsd                     http://camel.apache.org/schema/spring                      http://camel.apache.org/schema/spring/camel-spring.xsd   http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context.xsd">
+    <cxf:rsServer address="http://0.0.0.0:9992/Ejemplo02/Rest/"
+        id="EndPointRest" serviceClass="fuse.ejemplo.RestServicio"/>
+    <cxf:cxfEndpoint address="http://0.0.0.0:9992/Ejemplo02/Soap/"
+        id="EndpointSoap" serviceClass="fuse.ejemplo.ISoapServicio"/>
+    <bean class="fuse.ejemplo.Proceso" id="ProcesoDelServicio"/>
+    <camelContext id="ContextoEjemplo02" xmlns="http://camel.apache.org/schema/spring">
+        <route id="RutaSoapEjemplo02">
+            <from id="FromSoap" uri="cxf:bean:EndpointSoap"/>
+            <log id="_log1" message="Se ha llamado al servicio..."/>
+            <log id="_log2" message="${body}"/>
+            <bean id="BeanProcesoSoap" method="Metodo01" ref="ProcesoDelServicio"/>
+            <log id="_log3" message="Resultado del servicio..."/>
+            <log id="_log4" message="${body}"/>
+            <setHeader headerName="Content-Type" id="_setHeader1">
+                <simple>text/xml; charset=UTF-8</simple>
+            </setHeader>
+            <setHeader headerName="Encoding" id="_setHeader2">
+                <simple>UTF-8</simple>
+            </setHeader>
+        </route>
+        <route id="RutaRestEjemplo02">
+            <from id="FromRest" uri="cxfrs:bean:EndPointRest"/>
+            <log id="_log5" message="Se ha llamado al servicio..."/>
+            <log id="_log6" message="${body}"/>
+            <bean id="BeanProcesoRest" method="Metodo01" ref="ProcesoDelServicio"/>
+            <marshal id="_marshal1">
+                <json library="Jackson" prettyPrint="true"/>
+            </marshal>
+            <setHeader headerName="Content-Type" id="_setHeader3">
+                <simple>text/xml; charset=UTF-8</simple>
+            </setHeader>
+            <setHeader headerName="Encoding" id="_setHeader4">
+                <simple>UTF-8</simple>
+            </setHeader>
+            <log id="_log7" message="Resultado del servicio..."/>
+            <log id="_log8" message="${body}"/>
+        </route>
+    </camelContext>
+</beans>

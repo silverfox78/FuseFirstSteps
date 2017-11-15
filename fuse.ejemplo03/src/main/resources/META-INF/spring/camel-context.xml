@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="     http://www.springframework.org/schema/beans                http://www.springframework.org/schema/beans/spring-beans.xsd                     http://camel.apache.org/schema/cxf                      http://camel.apache.org/schema/cxf/camel-cxf.xsd                     http://cxf.apache.org/jaxrs                      http://cxf.apache.org/schemas/jaxrs.xsd                     http://camel.apache.org/schema/spring                      http://camel.apache.org/schema/spring/camel-spring.xsd   http://www.springframework.org/schema/context   http://www.springframework.org/schema/context/spring-context.xsd">
+    <cxf:cxfEndpoint address="http://0.0.0.0:1234/Servicio"
+        id="EndpointSoap" serviceClass="fuse.ejemplo.negocio.ISoapServicio"/>
+    <bean class="fuse.ejemplo.negocio.Proceso" id="ProcesoDelServicio"/>
+    <camelContext id="_camelContext1" xmlns="http://camel.apache.org/schema/spring">
+        <route id="RutaSoapServicio">
+            <from id="FromSoap" uri="cxf:bean:EndpointSoap"/>
+            <log id="_log1" message="Se ha llamado al servicio..."/>
+            <log id="_log2" message="${body}"/>
+            <bean id="BeanProcesoSoap" method="Metodo" ref="ProcesoDelServicio"/>
+            <log id="_log3" message="Resultado del servicio..."/>
+            <log id="_log4" message="${body}"/>
+            <setHeader headerName="Content-Type" id="_setHeader1">
+                <simple>text/xml; charset=UTF-8</simple>
+            </setHeader>
+            <setHeader headerName="Encoding" id="_setHeader2">
+                <simple>UTF-8</simple>
+            </setHeader>
+            
+            <to id="_to1" uri="file://src/data/out?fileName=Texto${date:now:yyyy-MM-dd}.txt&amp;fileExist=Append&amp;charset=utf-8"/>
+        </route>
+    </camelContext>
+</beans>
